@@ -8,7 +8,6 @@ on:
 
 permissions:
   contents: write
-  pages: write
 
 jobs:
   briefing:
@@ -39,15 +38,12 @@ jobs:
           REPORT_BASE_URL: https://tingtingxiao0706.github.io/morning-briefing
         run: python main.py
 
-      - name: Deploy report to GitHub Pages
-        if: success()
-        run: |
-          cd output
-          git init
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          # 保留最近 30 天的报告
-          cp *.html index.html 2>/dev/null || true
-          git add -A
-          git commit -m "deploy briefing $(date +%Y-%m-%d)"
-          git push --force https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git HEAD:gh-pages
+      - name: List output files
+        run: ls -la output/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
+          keep_files: true
