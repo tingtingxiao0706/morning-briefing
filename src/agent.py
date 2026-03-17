@@ -77,6 +77,13 @@ class MorningBriefingAgent:
 
         return FeishuNotifier(app_id=app_id, app_secret=app_secret, chat_id=chat_id)
 
+    @staticmethod
+    def _build_report_url(html_path: Path) -> str | None:
+        base = os.getenv("REPORT_BASE_URL", "")
+        if not base:
+            return None
+        return f"{base.rstrip('/')}/{html_path.name}"
+
     async def run(self) -> Path:
         logger.info("=== Morning Briefing Agent START ===")
         t0 = time.time()
@@ -103,8 +110,9 @@ class MorningBriefingAgent:
         # 4. Send to Feishu
         if self.notifier:
             logger.info("Step 4/4: Sending to Feishu...")
+            report_url = self._build_report_url(html_path)
             try:
-                ok = await self.notifier.send(sections, png_path, html_path=html_path)
+                ok = await self.notifier.send(sections, png_path, report_url=report_url)
                 if ok:
                     logger.success("Feishu notification sent!")
                 else:

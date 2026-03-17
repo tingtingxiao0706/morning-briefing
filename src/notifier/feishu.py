@@ -55,24 +55,6 @@ class FeishuNotifier:
             logger.success(f"Image uploaded to Feishu: {image_key}")
             return image_key
 
-    async def _upload_file(self, file_path: Path) -> str:
-        token = await self._get_token()
-        async with httpx.AsyncClient(timeout=30) as client:
-            with open(file_path, "rb") as f:
-                resp = await client.post(
-                    f"{FEISHU_BASE}/im/v1/files",
-                    headers={"Authorization": f"Bearer {token}"},
-                    data={"file_type": "stream", "file_name": file_path.name},
-                    files={"file": (file_path.name, f, "application/octet-stream")},
-                )
-            resp.raise_for_status()
-            data = resp.json()
-            if data.get("code") != 0:
-                raise RuntimeError(f"Feishu file upload failed: {data.get('msg')}")
-            file_key = data["data"]["file_key"]
-            logger.success(f"File uploaded to Feishu: {file_key}")
-            return file_key
-
     async def _send_message(self, msg_type: str, content: dict) -> bool:
         token = await self._get_token()
         async with httpx.AsyncClient(timeout=15) as client:
@@ -98,25 +80,35 @@ class FeishuNotifier:
         sections: List[BriefingSection],
         image_path: Path,
         html_path: Path | None = None,
+        report_url: str | None = None,
     ) -> bool:
         await self._get_token()
 
         # 1. 发送图片（预览）
         image_key = await self._upload_image(image_path)
         ok = await self._send_message("image", {"image_key": image_key})
-        if ok:
-            logger.success("Feishu image sent")
-        else:
+        if not ok:
             return False
+        logger.success("Feishu image sent")
 
-        # 2. 发送 HTML 文件（可点击链接）
-        if html_path and html_path.exists():
-            try:
-                file_key = await self._upload_file(html_path)
-                ok = await self._send_message("file", {"file_key": file_key})
-                if ok:
-                    logger.success("Feishu HTML file sent")
-            except Exception as e:
-                logger.warning(f"HTML file send failed (non-critical): {e}")
+        # 2. 发送可点击的报告链接
+        if report_url:
+            date_str = datetime.now().strftime("%Y-%m-%d")
+            post_content = {
+                "zh_cn": {
+                    "title": f"☀ 晨间简报 · {date_str}",
+                    "content": [
+                        [
+                            {"tag": "text", "text": "👆 点击图片可放大查看\n\n"},
+                        ],
+                        [
+                            {"tag": "a", "text": "📖 打开完整报告（链接可点击）", "href": report_url},
+                        ],
+                    ],
+                }
+            }
+            ok = await self._send_message("post", post_content)
+            if ok:
+                logger.success(f"Feishu report link sent: {report_url}")
 
         return True
