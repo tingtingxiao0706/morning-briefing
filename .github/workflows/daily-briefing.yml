@@ -1,0 +1,43 @@
+name: Daily Morning Briefing
+
+on:
+  schedule:
+    # 每天北京时间 08:00（UTC 00:00）
+    - cron: "0 0 * * *"
+  workflow_dispatch: # 支持手动触发
+
+jobs:
+  briefing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          playwright install --with-deps chromium
+
+      - name: Run Morning Briefing Agent
+        env:
+          FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+          FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+          FEISHU_CHAT_ID: ${{ secrets.FEISHU_CHAT_ID }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+        run: python main.py
+
+      - name: Upload report artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: briefing-${{ github.run_id }}
+          path: output/
+          retention-days: 30
