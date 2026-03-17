@@ -13,15 +13,40 @@
     font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
     background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
     color: #e0e0e0;
-    width: 800px;
+    max-width: 800px;
     min-height: 100vh;
     padding: 0;
+    margin: 0 auto;
   }
 
   .container {
     max-width: 800px;
     margin: 0 auto;
     padding: 40px 32px;
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 600px) {
+    .container { padding: 24px 16px; }
+    .header h1 { font-size: 24px; }
+    .header .date { font-size: 12px; letter-spacing: 1.5px; }
+    .stats { gap: 16px; }
+    .stat-value { font-size: 20px; }
+    .section-header { padding: 12px 16px; }
+    .section-icon { width: 30px; height: 30px; font-size: 18px; }
+    .section-name { font-size: 14px; }
+    .item { padding: 10px 16px; gap: 10px; }
+    .item-rank { width: 24px; height: 24px; font-size: 11px; border-radius: 6px; }
+    .item-title { font-size: 13px; }
+    .item-summary { font-size: 11px; }
+    .item-score { font-size: 11px; padding: 3px 8px; }
+    .ai-analysis { padding: 16px; }
+    .ai-summary { font-size: 13px; padding: 10px 12px; }
+    .ai-trend-item { font-size: 12px; }
+    .ai-must-read { padding: 10px 12px; }
+    .ai-must-read-title { font-size: 13px; }
+    .ai-analysis-header .ai-title { font-size: 14px; }
+    .ai-analysis-header .ai-icon { width: 30px; height: 30px; font-size: 16px; }
   }
 
   /* --- Header --- */
@@ -156,6 +181,11 @@
   .item-title a {
     color: inherit;
     text-decoration: none;
+  }
+
+  .item-title a:hover {
+    color: #9e8cff;
+    text-decoration: underline;
   }
 
   .item-summary {
@@ -386,7 +416,7 @@
       <div class="ai-badge">AI Generated</div>
     </div>
 
-    <div class="ai-summary">AI在科学、机器人及金融领域取得突破，同时安全与版权争议凸显行业深化与规范需求。</div>
+    <div class="ai-summary">机器人自组装、LLM评估完善、AI科学突破与安全风险并存，开源项目活跃。</div>
 
     
     <div class="ai-trends">
@@ -394,17 +424,17 @@
       
       <div class="ai-trend-item">
         <div class="ai-trend-dot"></div>
-        <span>AI攻克基础科学难题（如宇宙弦），跨学科应用成新高地。</span>
+        <span>Figure探索机器人自组装技术，推动低成本自动化生产。</span>
       </div>
       
       <div class="ai-trend-item">
         <div class="ai-trend-dot"></div>
-        <span>机器人成本骤降并探索自制造，自动化生产链加速成熟。</span>
+        <span>AI在物理学与金融预测领域取得突破，跨学科应用加速。</span>
       </div>
       
       <div class="ai-trend-item">
         <div class="ai-trend-dot"></div>
-        <span>大模型安全（如AI投毒）与版权纠纷引发行业深度反思。</span>
+        <span>AI安全与版权争议凸显，GEO攻击及大模型发布受限。</span>
       </div>
       
     </div>
@@ -413,15 +443,15 @@
     
     <div class="ai-must-read">
       <div class="ai-must-read-label">必读推荐</div>
-      <div class="ai-must-read-title">新智元| 人工智能Gemini攻克「宇宙弦」终极难题!AI科学家最优雅解法震撼物理学</div>
+      <div class="ai-must-read-title">量子位| 一手实测首个龙虾模型：长路径任务不失误，一人包揽全栈开发</div>
       
-      <div class="ai-must-read-reason">该成果标志AI从工具变为科学发现伙伴，可能重塑基础研究范式，具里程碑意义。</div>
+      <div class="ai-must-read-reason">该文实测展示龙虾模型在复杂任务中的稳定性，为强化学习在机器人控制的应用提供关键实证参考。</div>
       
     </div>
     
 
     
-    <div class="ai-outlook">💡 开发者需深耕垂直领域模型，同时加强安全、合规与可解释性技术布局。</div>
+    <div class="ai-outlook">💡 开发者需整合安全工具与评估框架，行业将更注重AI在垂直领域的可靠落地。</div>
     
   </div>
   
@@ -492,7 +522,7 @@
       </div>
       <div class="item-content">
         <div class="item-title">
-          <a href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgSxGAL_sBxBwsGvDHn0f_QqjrOmSey7NmAFqXa8Fplpd9pD2LqijQNPyDb0hv9jxbvxhEJvsZSkH6MdtCgeMNnpDCvcApfAaF2f3fll9Fgj8oWqmybwlssiVl7OPDmLvPRu3_O1CiX17JyZbhF_NnXpCuXvrIXx2jZAMHazUoC2ak356ITrB7TpVyUuQ590eQrR440lKsDpILkhNFlBFXz9bdrgozfSg6bw..&amp;type=2&amp;query=%E6%96%B0%E6%99%BA%E5%85%83&amp;token=A41A79505CE4169FA2A7EF8D22DF6FFAA23E9B0D69B8C365">新智元| 人工智能Gemini攻克「宇宙弦」终极难题!AI科学家最优雅解法震撼物理学</a>
+          <a href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgSxGAL_sBxBwsQFKC_LzIyjvrOmSey7NmAFqXa8Fplpd9pD2LqijQNPyDb0hv9jxbvxhEJvsZSkH6MdtCgeMNnpDCvcApfAaF2f3fll9Fgj8oWqmybwlssiVl7OPDmLvPRqz9kiJJ2XAZugIcghJlMhXEFfy5begGITbnZqGS9kB0vx5rAA_eXr5anVWTpcGXLRZyzhXDEJxZ5TPTulHpbINf_71bqkOtiw..&amp;type=2&amp;query=%E6%96%B0%E6%99%BA%E5%85%83&amp;token=A439E35CA71CED67595C17759EF1E6AA5A3B37E969B8C7DC">新智元| 人工智能Gemini攻克「宇宙弦」终极难题!AI科学家最优雅解法震撼物理学</a>
         </div>
         
         <div class="item-summary">新智元报道  编辑:定慧转自:微信公众号【新智元】就在刚刚,Google Research团队用Gemini Deep Think + 树搜索框架,独立攻克...</div>
@@ -507,7 +537,7 @@
       </div>
       <div class="item-content">
         <div class="item-title">
-          <a href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6ft3wfAVofsP5Peu-UiA4DM16kpQcNDuuGHk4GIPg8taVgrFeYQugDu5Gn9HD7GSwaBw_FZEVBVqBrMpECY3WVhqzutAOm5tOUp01q7P8Q3ehalpE2K4co5lvGfaIaBQs8_QaLR-fOlF_iKaXE3fb2jh45WZJh2sSLuj-85ztx0ix6NIZJjTDV38qhEaXsuTQAlHMJM_Sd7xOkvhi23lhGL-5Bv0XWv5SiMIftApax2t1qkNI1DfzrfL51cUZfiOBAktWdJHATF1grAKNhD0IL0Nr9B6M_jdGiZqwg0yoRFw.&amp;type=2&amp;query=%E6%96%B0%E6%99%BA%E5%85%83&amp;token=A41A79505CE4169FA2A7EF8D22DF6FFAA23E9B0D69B8C365">新智元一周年专家寄语(现场直播)</a>
+          <a href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6ft3wfAVofsP5Peu-UiA4DM16kpQcNDuu1_Vr-BYrH2CVgrFeYQugDu5Gn9HD7GSwaBw_FZEVBVqBrMpECY3WVhqzutAOm5tOUp01q7P8Q3ehalpE2K4co5lvGfaIaBQs8_QaLR-fOlF_iKaXE3fb2jh45WZJh2sSLuj-85ztx0ix6NIZJjTDV38qhEaXsuTQAlHMJM_Sd7xOkvhi23lhGL-5Bv0XWv5S93A9ntriW3LSsIZF6AZ2Uc_1Wnz4PlIhw9Yl5Vg_feCxzSYg15hYtG6k1WTP6uGkiZqwg0yoRFw.&amp;type=2&amp;query=%E6%96%B0%E6%99%BA%E5%85%83&amp;token=A439E35CA71CED67595C17759EF1E6AA5A3B37E969B8C7DC">新智元一周年专家寄语(现场直播)</a>
         </div>
         
         <div class="item-summary">2016年9月7日新智元一周岁专家寄语白 硕新智元智库首席执委、上海证交所前CTO新智元这一年的历程,是不断拼搏、不断升华的...</div>
@@ -522,7 +552,7 @@
       </div>
       <div class="item-content">
         <div class="item-title">
-          <a href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgSxGAL_sBxBwsGvDHn0f_QqjrOmSey7NmAFqXa8Fplpd9i0q9ueEV_0k9-z5N7UJPSPzN2LSjKxOg0Qh6i9u8HgDXnqwqfayqofDtQQiBen0-_Y_mZSU-JL1y4gxk08HM9VDYxg5qVkBUPNxhJtFB4z8VKc4AI6KBT5-FC6YeXRwnRvNbKNajidnAPmciSc1gCfLANID1jUG9Y8OT-bLsVylf_71bqkOtiw..&amp;type=2&amp;query=%E6%96%B0%E6%99%BA%E5%85%83&amp;token=A41A79505CE4169FA2A7EF8D22DF6FFAA23E9B0D69B8C365">新智元重磅发布《2018华人AI青年学术影响力百人名单》,清华学者霸榜</a>
+          <a href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgSxGAL_sBxBwsQFKC_LzIyjvrOmSey7NmAFqXa8Fplpd9i0q9ueEV_0k9-z5N7UJPSPzN2LSjKxOg0Qh6i9u8HgDXnqwqfayqofDtQQiBen0-_Y_mZSU-JL1y4gxk08HM9bv-2L9qwe-EA6Hti36qk6n-ACOoqijmAbNuj5hbz0fnMPV_xtfAMxlotOIPKZHwq_4hem-vdaSL8F-pT3AWnXhe0WC6Sbi7DA..&amp;type=2&amp;query=%E6%96%B0%E6%99%BA%E5%85%83&amp;token=A439E35CA71CED67595C17759EF1E6AA5A3B37E969B8C7DC">新智元重磅发布《2018华人AI青年学术影响力百人名单》,清华学者霸榜</a>
         </div>
         
         <div class="item-summary">新智元原创 作者:羽未、索夫、木青【新智元导读】今日,新智元重磅独家发布《2018华人AI青年学术影响力百人名单》,评选出100...</div>
@@ -537,7 +567,7 @@
       </div>
       <div class="item-content">
         <div class="item-title">
-          <a href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgSxGAL_sBxBwsGvDHn0f_QqjrOmSey7NmAFqXa8Fplpd9h65naJRXNjR2TEMyoSRHiMdWKmLt2VMjjhqdHKt8FaQ5b7KLyn4PNTMOlxTZH4hZSgIEwk1sZWm6wtDZvMtgXLEFlK4584zJ5IiCb2Be7HY8_X9DtPWcgvlUHGyK1RcsuqBUDwSCAHU_7tQBohyfoEG1BGtmEioTvXfcBhOoI4LP28temKTOwg..&amp;type=2&amp;query=%E6%96%B0%E6%99%BA%E5%85%83&amp;token=A41A79505CE4169FA2A7EF8D22DF6FFAA23E9B0D69B8C365">王飞跃答《新智元》人工智能20问</a>
+          <a href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgSxGAL_sBxBwsQFKC_LzIyjvrOmSey7NmAFqXa8Fplpd9h65naJRXNjR2TEMyoSRHiMdWKmLt2VMjjhqdHKt8FaQ5b7KLyn4PNTMOlxTZH4hZSgIEwk1sZWm6wtDZvMtgXLzpwmzz6mOX1_6hUkGjh49bKCdY7V29P5PLrbOCUW96qB6fzCY8yKOkgw0zdDzl7_cJVr4VCOTDMMyISHKyGe9hlgeRt7bSzA..&amp;type=2&amp;query=%E6%96%B0%E6%99%BA%E5%85%83&amp;token=A439E35CA71CED67595C17759EF1E6AA5A3B37E969B8C7DC">王飞跃答《新智元》人工智能20问</a>
         </div>
         
         <div class="item-summary">【导读】新智元智库专家王飞跃教授在新智元于2016年3月出版的《新智元:机器+人类=超智能时代》一书中就人工智能发展历史,技...</div>
@@ -552,10 +582,10 @@
       </div>
       <div class="item-content">
         <div class="item-title">
-          <a href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6ft3wfAVofsP5Peu-UiA4DM16kpQcNDuuGHk4GIPg8taVgrFeYQugDu5Gn9HD7GSwaBw_FZEVBVqBrMpECY3WVhqzutAOm5tOUp01q7P8Q3daIfGtIKJXDY-8rQGFmFlsb4bensL7LgTfWf9Z97jwT1hTtsh8c2K_2JyHwwx5zX8svK-ecviRDNTyS03Gzyo8wEpt7gAmhav4jNvpGRRHO6MDNzRrsetyWhfJ8W_ELKnzgNWfbShlIS0CvhgeRnpFoI6dd6f6gQXdPod_nDD9CLgyw3aW1LuiiZqwg0yoRFw.&amp;type=2&amp;query=%E6%96%B0%E6%99%BA%E5%85%83&amp;token=A41A79505CE4169FA2A7EF8D22DF6FFAA23E9B0D69B8C365">【新智元100】7 张图看懂美国人工智能产业</a>
+          <a href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgSxGAL_sBxBwsQFKC_LzIyjvrOmSey7NmAFqXa8Fplpd9Ai_3PU7xnPPwBVBQ5iqKA3vlXNypjihOCi0kkKnLGiorpJwSZ38jih6jLFQC9xLpQWnRXnyNlF9Upk70ammG92pcGiICJ9rIx4-Auylf7nqEzhdEGVTjT8__MwOm_T9UCYBykTnXy3buN7ZCzjYh848n9MuSXzkY&amp;type=2&amp;query=%E6%96%B0%E6%99%BA%E5%85%83&amp;token=A439E35CA71CED67595C17759EF1E6AA5A3B37E969B8C7DC">【新智元】智能+未来:讯飞超脑最强干货分享 —— 胡郁专访</a>
         </div>
         
-        <div class="item-summary">1新智元编译1 来源:O&#39;Reilly译者:胡祥杰  张冬君【新智元导读】本文是O&#39;reilly的报告《 美国人工智能新市场》的作者Aman Naimat...</div>
+        <div class="item-summary">新智元编辑1整理:王婉婷 李宏菲12月21日,科大讯飞2015年度发布会震撼登场.发布会上讯飞董事长刘庆峰展望了“讯飞超脑”的...</div>
         
       </div>
       
@@ -743,11 +773,11 @@
           <a href="https://github.com/666ghj/MiroFish">666ghj/MiroFish</a>
         </div>
         
-        <div class="item-summary">Python · ★ 30,277 · 3,260 stars today</div>
+        <div class="item-summary">Python · ★ 30,334 · 3,260 stars today</div>
         
       </div>
       
-      <div class="item-score">30277</div>
+      <div class="item-score">30334</div>
       
     </div>
     
@@ -760,11 +790,11 @@
           <a href="https://github.com/thedotmack/claude-mem">thedotmack/claude-mem</a>
         </div>
         
-        <div class="item-summary">TypeScript · ★ 36,962 · 1,045 stars today</div>
+        <div class="item-summary">TypeScript · ★ 36,982 · 1,045 stars today</div>
         
       </div>
       
-      <div class="item-score">36962</div>
+      <div class="item-score">36982</div>
       
     </div>
     
@@ -777,11 +807,11 @@
           <a href="https://github.com/Crosstalk-Solutions/project-nomad">Crosstalk-Solutions/project-nomad</a>
         </div>
         
-        <div class="item-summary">TypeScript · ★ 1,892 · 775 stars today</div>
+        <div class="item-summary">TypeScript · ★ 1,907 · 775 stars today</div>
         
       </div>
       
-      <div class="item-score">1892</div>
+      <div class="item-score">1907</div>
       
     </div>
     
@@ -794,11 +824,11 @@
           <a href="https://github.com/obra/superpowers">obra/superpowers</a>
         </div>
         
-        <div class="item-summary">Shell · ★ 88,960 · 3,152 stars today</div>
+        <div class="item-summary">Shell · ★ 89,019 · 3,152 stars today</div>
         
       </div>
       
-      <div class="item-score">88960</div>
+      <div class="item-score">89019</div>
       
     </div>
     
@@ -811,11 +841,11 @@
           <a href="https://github.com/abhigyanpatwari/GitNexus">abhigyanpatwari/GitNexus</a>
         </div>
         
-        <div class="item-summary">TypeScript · ★ 15,715 · 1,860 stars today</div>
+        <div class="item-summary">TypeScript · ★ 15,725 · 1,860 stars today</div>
         
       </div>
       
-      <div class="item-score">15715</div>
+      <div class="item-score">15725</div>
       
     </div>
     
@@ -823,7 +853,7 @@
   
 
   <div class="footer">
-    <div class="generated">生成于 2026-03-17 10:59:02</div>
+    <div class="generated">生成于 2026-03-17 11:17:59</div>
     <div class="powered">Morning Briefing Agent · Powered by Python</div>
   </div>
 </div>
