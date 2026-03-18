@@ -1,0 +1,39 @@
+2026-03-18 01:52:00.506 | INFO     | src.agent:_init_analyzer:62 - AI analyzer: model=stepfun/step-3.5-flash:free, base=https://openrouter.ai/api/v1
+2026-03-18 01:52:00.507 | INFO     | src.agent:run:88 - === Morning Briefing Agent START ===
+2026-03-18 01:52:00.507 | INFO     | src.agent:run:92 - Step 1/4: Scraping 5 sources...
+2026-03-18 01:52:00.507 | INFO     | src.scrapers.base:scrape:37 - [机器之心] Fetching top 5 items...
+2026-03-18 01:52:00.574 | INFO     | src.scrapers.base:scrape:37 - [新智元] Fetching top 5 items...
+2026-03-18 01:52:00.596 | INFO     | src.scrapers.base:scrape:37 - [量子位] Fetching top 5 items...
+2026-03-18 01:52:00.617 | INFO     | src.scrapers.base:scrape:37 - [AITOP100] Fetching top 5 items...
+2026-03-18 01:52:00.638 | INFO     | src.scrapers.base:scrape:37 - [GitHub Trending] Fetching top 5 items...
+2026-03-18 01:52:00.820 | SUCCESS  | src.scrapers.base:scrape:40 - [GitHub Trending] Got 5 items
+2026-03-18 01:52:01.386 | SUCCESS  | src.scrapers.base:scrape:40 - [机器之心] Got 3 items
+2026-03-18 01:52:02.148 | SUCCESS  | src.scrapers.base:scrape:40 - [新智元] Got 5 items
+2026-03-18 01:52:02.447 | SUCCESS  | src.scrapers.base:scrape:40 - [量子位] Got 5 items
+2026-03-18 01:52:03.139 | SUCCESS  | src.scrapers.base:scrape:40 - [AITOP100] Got 5 items
+2026-03-18 01:52:03.140 | INFO     | src.agent:run:96 - Scraping done: 23 items from 5 sources
+2026-03-18 01:52:03.140 | INFO     | src.agent:run:101 - Step 2/4: Running AI analysis...
+2026-03-18 01:52:03.140 | DEBUG    | src.analyzer.llm:analyze:87 - AI analysis prompt (810 chars)
+2026-03-18 01:52:15.999 | DEBUG    | src.analyzer.llm:analyze:124 - LLM raw response (368 chars): ```json
+{
+  "summary": "今日AI动态聚焦机器人成本突破、科学难题攻克与模型效率优化。",
+  "trends": [
+    "机器人技术突破成本骤降，向自制造与自主化演进。",
+    "AI深入基础科学领域，展现理论发现与复杂问题求解潜力。",
+    "大模型效率成焦点，算力利用率优化与架构创新受关注。"
+  ],
+  "must_read": "[新智元] 人工智能Gemini攻克「宇宙弦」终极难题!AI科学家最优雅解法震撼物理学",
+  "must_read_reason": "该成果标志AI从应用工具迈向基础科学发现，可能重塑科研范式，具有里程碑意义。",
+
+2026-03-18 01:52:16.000 | SUCCESS  | src.analyzer.llm:analyze:133 - AI analysis done: 今日AI动态聚焦机器人成本突破、科学难题攻克与模型效率优化。...
+2026-03-18 01:52:16.000 | INFO     | src.agent:run:107 - Step 3/4: Generating HTML report & screenshot...
+2026-03-18 01:52:16.011 | SUCCESS  | src.report.generator:render_html:46 - HTML report saved: output/briefing_2026-03-18.html
+2026-03-18 01:52:21.036 | SUCCESS  | src.report.generator:screenshot:65 - Screenshot saved: output/briefing_2026-03-18.png (824 KB)
+2026-03-18 01:52:21.036 | INFO     | src.agent:run:112 - Step 4/4: Sending to Feishu...
+2026-03-18 01:52:21.741 | SUCCESS  | src.notifier.feishu:_get_token:37 - Feishu tenant_access_token acquired
+2026-03-18 01:52:23.591 | SUCCESS  | src.notifier.feishu:_upload_image:55 - Image uploaded to Feishu: img_v3_02vt_b6f8d397-78f7-4a74-92b8-aed5276c43fg
+2026-03-18 01:52:25.062 | SUCCESS  | src.notifier.feishu:send:92 - Feishu image sent
+2026-03-18 01:52:26.214 | SUCCESS  | src.notifier.feishu:send:112 - Feishu report link sent: https://tingtingxiao0706.github.io/morning-briefing/briefing_2026-03-18.html
+2026-03-18 01:52:26.214 | SUCCESS  | src.agent:run:117 - Feishu notification sent!
+2026-03-18 01:52:26.215 | INFO     | src.agent:run:126 - === Morning Briefing Agent DONE in 25.7s ===
+2026-03-18 01:52:26.216 | INFO     | __main__:main:61 - Report saved to: output/briefing_2026-03-18.png
