@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>晨间简报 - 2026-03-19</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #e0e0e0;
+    max-width: 800px;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 32px;
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 600px) {
+    .container { padding: 24px 16px; }
+    .header h1 { font-size: 24px; }
+    .header .date { font-size: 12px; letter-spacing: 1.5px; }
+    .stats { gap: 16px; }
+    .stat-value { font-size: 20px; }
+    .section-header { padding: 12px 16px; }
+    .section-icon { width: 30px; height: 30px; font-size: 18px; }
+    .section-name { font-size: 14px; }
+    .item { padding: 10px 16px; gap: 10px; }
+    .item-rank { width: 24px; height: 24px; font-size: 11px; border-radius: 6px; }
+    .item-title { font-size: 13px; }
+    .item-summary { font-size: 11px; }
+    .item-score { font-size: 11px; padding: 3px 8px; }
+    .ai-analysis { padding: 16px; }
+    .ai-summary { font-size: 13px; padding: 10px 12px; }
+    .ai-trend-item { font-size: 12px; }
+    .ai-must-read { padding: 10px 12px; }
+    .ai-must-read-title { font-size: 13px; }
+    .ai-analysis-header .ai-title { font-size: 14px; }
+    .ai-analysis-header .ai-icon { width: 30px; height: 30px; font-size: 16px; }
+  }
+
+  /* --- Header --- */
+  .header {
+    text-align: center;
+    margin-bottom: 36px;
+    position: relative;
+  }
+
+  .header::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #6c63ff, #e94560);
+    margin: 18px auto 0;
+    border-radius: 2px;
+  }
+
+  .header .date {
+    font-size: 14px;
+    color: #9e9e9e;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #6c63ff 0%, #e94560 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.3;
+  }
+
+  .header .subtitle {
+    font-size: 13px;
+    color: #757575;
+    margin-top: 8px;
+  }
+
+  /* --- Section --- */
+  .section {
+    margin-bottom: 28px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .section-icon {
+    font-size: 22px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .section-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+  .section-badge {
+    margin-left: auto;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  /* --- Item --- */
+  .item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    transition: background 0.2s;
+  }
+
+  .item:last-child { border-bottom: none; }
+  .item:hover { background: rgba(255, 255, 255, 0.03); }
+
+  .item-rank {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .item-rank.rank-1 { background: linear-gradient(135deg, #f5af19, #f12711); }
+  .item-rank.rank-2 { background: linear-gradient(135deg, #667eea, #764ba2); }
+  .item-rank.rank-3 { background: linear-gradient(135deg, #11998e, #38ef7d); }
+  .item-rank.rank-default { background: rgba(255, 255, 255, 0.1); }
+
+  .item-content { flex: 1; min-width: 0; }
+
+  .item-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #f0f0f0;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .item-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .item-title a:hover {
+    color: #9e8cff;
+    text-decoration: underline;
+  }
+
+  .item-summary {
+    font-size: 12px;
+    color: #9e9e9e;
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  .item-score {
+    flex-shrink: 0;
+    font-size: 12px;
+    color: #bbb;
+    padding: 4px 10px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    white-space: nowrap;
+    align-self: center;
+  }
+
+  /* --- Footer --- */
+  .footer {
+    text-align: center;
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 12px;
+    color: #616161;
+  }
+
+  .footer .generated {
+    margin-bottom: 4px;
+  }
+
+  .footer .powered {
+    color: #757575;
+  }
+
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 12px;
+    margin-bottom: 28px;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #6c63ff, #e94560);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: #757575;
+    margin-top: 2px;
+  }
+
+  /* --- AI Analysis --- */
+  .ai-analysis {
+    margin-bottom: 28px;
+    background: linear-gradient(135deg, rgba(108, 99, 255, 0.12), rgba(233, 69, 96, 0.08));
+    border-radius: 16px;
+    border: 1px solid rgba(108, 99, 255, 0.2);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ai-analysis::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #6c63ff, #e94560, #6c63ff);
+  }
+
+  .ai-analysis-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .ai-analysis-header .ai-icon {
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #6c63ff, #e94560);
+  }
+
+  .ai-analysis-header .ai-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .ai-analysis-header .ai-badge {
+    margin-left: auto;
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(108, 99, 255, 0.3);
+    color: #b8b0ff;
+    font-weight: 500;
+  }
+
+  .ai-summary {
+    font-size: 15px;
+    font-weight: 500;
+    color: #f0f0f0;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    border-left: 3px solid #6c63ff;
+  }
+
+  .ai-trends {
+    margin-bottom: 16px;
+  }
+
+  .ai-trends-label {
+    font-size: 12px;
+    color: #9e9e9e;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  .ai-trend-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 6px 0;
+    font-size: 13px;
+    color: #d0d0d0;
+    line-height: 1.5;
+  }
+
+  .ai-trend-dot {
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6c63ff, #e94560);
+    margin-top: 6px;
+  }
+
+  .ai-must-read {
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    margin-bottom: 12px;
+  }
+
+  .ai-must-read-label {
+    font-size: 11px;
+    color: #e94560;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+
+  .ai-must-read-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #f0f0f0;
+    margin-bottom: 4px;
+  }
+
+  .ai-must-read-reason {
+    font-size: 12px;
+    color: #9e9e9e;
+    line-height: 1.4;
+  }
+
+  .ai-outlook {
+    font-size: 13px;
+    color: #b0b0b0;
+    font-style: italic;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="date">2026-03-19 · 周四</div>
+    <h1>☀ 晨间简报</h1>
+    <div class="subtitle">开发者每日精选资讯</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-value">5</div>
+      <div class="stat-label">数据来源</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">23</div>
+      <div class="stat-label">资讯条目</div>
+    </div>
+  </div>
+
+  
+  <div class="ai-analysis">
+    <div class="ai-analysis-header">
+      <div class="ai-icon">✦</div>
+      <div class="ai-title">AI 编辑观点</div>
+      <div class="ai-badge">AI Generated</div>
+    </div>
+
+    <div class="ai-summary">‘龙虾’模型引发全行业应用热潮，AI在科学发现与硬件自造领域同步突破。</div>
+
+    
+    <div class="ai-trends">
+      <div class="ai-trends-label">趋势洞察</div>
+      
+      <div class="ai-trend-item">
+        <div class="ai-trend-dot"></div>
+        <span>‘龙虾’模型引爆应用层创新，从厂商到个人开发者争相探索。</span>
+      </div>
+      
+      <div class="ai-trend-item">
+        <div class="ai-trend-dot"></div>
+        <span>机器人向低成本自制造演进，Figure提出‘自己造自己’概念。</span>
+      </div>
+      
+      <div class="ai-trend-item">
+        <div class="ai-trend-dot"></div>
+        <span>AI攻克基础科学难题（如宇宙弦），倒逼评测标准与人才结构反思。</span>
+      </div>
+      
+    </div>
+    
+
+    
+    <div class="ai-must-read">
+      <div class="ai-must-read-label">必读推荐</div>
+      <div class="ai-must-read-title">新智元| 人工智能Gemini攻克「宇宙弦」终极难题!AI科学家最优雅解法震撼物理学</div>
+      
+      <div class="ai-must-read-reason">展示了AI在基础科学前沿的颠覆性潜力，超越应用层，引发对AI科研范式变革的思考。</div>
+      
+    </div>
+    
+
+    
+    <div class="ai-outlook">💡 开发者需关注垂直领域工具链（如unsloth）与硬件结合；行业需警惕应用泡沫，聚焦真实价值与科学突破。</div>
+    
+  </div>
+  
+
+  
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🤖</div>
+      <div class="section-name">机器之心</div>
+      <div class="section-badge" style="background: #1E88E5;">
+        3 条
+      </div>
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-1">
+        1
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://pro.jiqizhixin.com/reference/8e8f05d3-7b38-47f1-84d6-65e8c357bbf6">「龙虾热」后，OpenClaw 会是又一个泡沫吗？</a>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-2">
+        2
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://pro.jiqizhixin.com/reference/4697a0f3-c1ac-4b38-8172-4848664fd84e">成本下降 90%后，Figure 的下一步是机器人「自己造自己」？</a>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-3">
+        3
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://pro.jiqizhixin.com/reference/fa74b873-d93d-4ac0-8558-6b44712905b4">AI 下半场，LLM Benchmark 要补全什么？</a>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+  
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🧠</div>
+      <div class="section-name">新智元</div>
+      <div class="section-badge" style="background: #E53935;">
+        5 条
+      </div>
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-1">
+        1
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgS6glRArkRhDWJ2uwFjv86x4GI0OgPnEC6VqXa8Fplpd9tlHSrQ00mTpX_NMN5Jjbf0YCgaHyttb6-E3mAe8m9c4xFm65a9Yol59pLrp80-7-WYkFzAxtm01zuMKcyAR_NO0W0FocbflPfUyft9g3YDS7dZJ6Eo2VbGJrDeJinkkVdmUiuz4w3xQMW_O3Fm59yZW4ADrnXYLzQ1xuVRUwQl6fxjh3za6jWA..&amp;type=2&amp;query=%E6%96%B0%E6%99%BA%E5%85%83&amp;token=B5DFC7BFFC0EE2F955531803875B151D55B77FCB69BB56DB">新智元| 人工智能Gemini攻克「宇宙弦」终极难题!AI科学家最优雅解法震撼物理学</a>
+        </div>
+        
+        <div class="item-summary">新智元报道  编辑:定慧转自:微信公众号【新智元】就在刚刚,Google Research团队用Gemini Deep Think + 树搜索框架,独立攻克...</div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-2">
+        2
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6ft3wfAVofsP5Peu-UiA4DOHIu-s5CyzVPmCFWJGcc3mVgrFeYQugDu5Gn9HD7GSwaBw_FZEVBVqBrMpECY3WVhqzutAOm5tOUp01q7P8Q3ehalpE2K4co5lvGfaIaBQs8_QaLR-fOlF_iKaXE3fb2jh45WZJh2sSLuj-85ztx0ix6NIZJjTDV38qhEaXsuTQAlHMJM_Sd7xOkvhi23lhGL-5Bv0XWv5SF7qDhnt10eQAOWVMo5tFuVVKdKLiQsVRdqfX69GG3UyPte6krRvJAAiw7xZaqYW1iZqwg0yoRFw.&amp;type=2&amp;query=%E6%96%B0%E6%99%BA%E5%85%83&amp;token=B5DFC7BFFC0EE2F955531803875B151D55B77FCB69BB56DB">新智元一周年专家寄语(现场直播)</a>
+        </div>
+        
+        <div class="item-summary">2016年9月7日新智元一周岁专家寄语白 硕新智元智库首席执委、上海证交所前CTO新智元这一年的历程,是不断拼搏、不断升华的...</div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-3">
+        3
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgS6glRArkRhDWJ2uwFjv86x4GI0OgPnEC6VqXa8Fplpd9Ru5zXuRPmfjSSPQrhp9GHBF3cOpHG9Cg_Zl67MnSgI6D9ia4KAIBFYRWjaR_dbEPQVQnIktfiomVs1_PSL3K4JXwGD5irkuXA061HY_R3ikWKHF-ypCQNkyNTJQT1B7G6W9m39_bxlGRPjrY06TiF0WLheW0NekdFGMg8EWLEc_m0CtGSSkZQQ..&amp;type=2&amp;query=%E6%96%B0%E6%99%BA%E5%85%83&amp;token=B5DFC7BFFC0EE2F955531803875B151D55B77FCB69BB56DB">新智元重磅发布《2018华人AI青年学术影响力百人名单》,清华学者霸榜</a>
+        </div>
+        
+        <div class="item-summary">新智元原创 作者:羽未、索夫、木青【新智元导读】今日,新智元重磅独家发布《2018华人AI青年学术影响力百人名单》,评选出100...</div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-default">
+        4
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgS6glRArkRhDWJ2uwFjv86x4GI0OgPnEC6VqXa8Fplpd9ehArzaEz9vYX0LXCgvUywDgwk4RzYTYh8a_pHkJS-L6mgO61s4AP-nxXw0QyGjLOS_hN74L33jRg6u8Xl_UVZ2JUuRHfxyYWMDywAuuFCjR8iSLTJA-ZTf7f9DeuIj2kR_KUZeIEtbIK0CXpX9vp-o8n9MuSXzkY&amp;type=2&amp;query=%E6%96%B0%E6%99%BA%E5%85%83&amp;token=B5DFC7BFFC0EE2F955531803875B151D55B77FCB69BB56DB">【新智元】智能+未来:讯飞超脑最强干货分享 —— 胡郁专访</a>
+        </div>
+        
+        <div class="item-summary">新智元编辑1整理:王婉婷 李宏菲12月21日,科大讯飞2015年度发布会震撼登场.发布会上讯飞董事长刘庆峰展望了“讯飞超脑”的...</div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-default">
+        5
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6ft3wfAVofsP5Peu-UiA4DOHIu-s5CyzVPmCFWJGcc3mVgrFeYQugDu5Gn9HD7GSwaBw_FZEVBVqBrMpECY3WVhqzutAOm5tOUp01q7P8Q3daIfGtIKJXDY-8rQGFmFlsb4bensL7LgTfWf9Z97jwT1hTtsh8c2K_2JyHwwx5zX8svK-ecviRDNTyS03Gzyo8wEpt7gAmhav4jNvpGRRHO6MDNzRrsetymbf8S0rbz0QyEP0h_48L0to2C02YWzqCnH3luoyoqqTZ2yAd6DvKbqn5GCVY2Os4iZqwg0yoRFw.&amp;type=2&amp;query=%E6%96%B0%E6%99%BA%E5%85%83&amp;token=B5DFC7BFFC0EE2F955531803875B151D55B77FCB69BB56DB">【新智元100】7 张图看懂美国人工智能产业</a>
+        </div>
+        
+        <div class="item-summary">1新智元编译1 来源:O&#39;Reilly译者:胡祥杰  张冬君【新智元导读】本文是O&#39;reilly的报告《 美国人工智能新市场》的作者Aman Naimat...</div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+  
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">⚛️</div>
+      <div class="section-name">量子位</div>
+      <div class="section-badge" style="background: #7C4DFF;">
+        5 条
+      </div>
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-1">
+        1
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://www.qbitai.com/2026/03/389038.html">小米神操作！认领榜一神秘模型Hunter Alpha，龙虾之父都忍不住打听</a>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-2">
+        2
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://www.qbitai.com/2026/03/389024.html">全行业都在忙着“吃虾”，MiniMax M2.7已经让虾自己拿起筷子了</a>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-3">
+        3
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://www.qbitai.com/2026/03/388980.html">求码10天，我终于过上了在微信上使唤🦞的日子</a>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-default">
+        4
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://www.qbitai.com/2026/03/388845.html">阿里“悟空”上线！钉钉给企业送来龙虾大军</a>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-default">
+        5
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://www.qbitai.com/2026/03/387756.html">拜拜了SWE-Bench！Cursor刚发了个AI Coding评测基准，难哭Claude</a>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+  
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🏆</div>
+      <div class="section-name">AITOP100</div>
+      <div class="section-badge" style="background: #FF6F00;">
+        5 条
+      </div>
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-1">
+        1
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://www.aitop100.cn/ai-daily-2026-03-18">今日AI快讯-2026年3月18日</a>
+        </div>
+        
+        <div class="item-summary">AI top100</div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-2">
+        2
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://www.aitop100.cn/ai-daily-2026-03-18">每日AI资讯-2026年3月18日</a>
+        </div>
+        
+        <div class="item-summary">AI TOP100</div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-3">
+        3
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://www.aitop100.cn/">AI演员渗透影视行业：男二以下角色被替代？于正直言真人表演不可替代</a>
+        </div>
+        
+        <div class="item-summary">AI TOP100</div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-default">
+        4
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://www.aitop100.cn/">AI赋能·剧力新生-AI仿真人赋能短剧创作实践沙龙</a>
+        </div>
+        
+        <div class="item-summary">AI TOP100</div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-default">
+        5
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://www.aitop100.cn/">AI实战落地新机遇！EasyClaw龙虾局·济南OPC交流会，解锁Agent提效密码</a>
+        </div>
+        
+        <div class="item-summary">AI TOP100</div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+  
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">⭐</div>
+      <div class="section-name">GitHub Trending</div>
+      <div class="section-badge" style="background: #238636;">
+        5 条
+      </div>
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-1">
+        1
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://github.com/jarrodwatts/claude-hud">jarrodwatts/claude-hud</a>
+        </div>
+        
+        <div class="item-summary">JavaScript · ★ 7,124 · 1,038 stars today</div>
+        
+      </div>
+      
+      <div class="item-score">7124</div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-2">
+        2
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://github.com/obra/superpowers">obra/superpowers</a>
+        </div>
+        
+        <div class="item-summary">Shell · ★ 96,341 · 4,089 stars today</div>
+        
+      </div>
+      
+      <div class="item-score">96341</div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-3">
+        3
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://github.com/unslothai/unsloth">unslothai/unsloth</a>
+        </div>
+        
+        <div class="item-summary">Python · ★ 55,869 · 1,005 stars today</div>
+        
+      </div>
+      
+      <div class="item-score">55869</div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-default">
+        4
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://github.com/newton-physics/newton">newton-physics/newton</a>
+        </div>
+        
+        <div class="item-summary">Python · ★ 2,926 · 26 stars today</div>
+        
+      </div>
+      
+      <div class="item-score">2926</div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-default">
+        5
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://github.com/shadps4-emu/shadPS4">shadps4-emu/shadPS4</a>
+        </div>
+        
+        <div class="item-summary">C++ · ★ 29,895 · 237 stars today</div>
+        
+      </div>
+      
+      <div class="item-score">29895</div>
+      
+    </div>
+    
+  </div>
+  
+
+  <div class="footer">
+    <div class="generated">生成于 2026-03-19 01:52:39</div>
+    <div class="powered">Morning Briefing Agent · Powered by Python</div>
+  </div>
+</div>
+</body>
+</html>
