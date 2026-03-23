@@ -1,38 +1,38 @@
-2026-03-22 01:51:57.214 | INFO     | src.agent:_init_analyzer:62 - AI analyzer: model=stepfun/step-3.5-flash:free, base=https://openrouter.ai/api/v1
-2026-03-22 01:51:57.214 | INFO     | src.agent:run:88 - === Morning Briefing Agent START ===
-2026-03-22 01:51:57.214 | INFO     | src.agent:run:92 - Step 1/4: Scraping 5 sources...
-2026-03-22 01:51:57.215 | INFO     | src.scrapers.base:scrape:37 - [机器之心] Fetching top 5 items...
-2026-03-22 01:51:57.276 | INFO     | src.scrapers.base:scrape:37 - [新智元] Fetching top 5 items...
-2026-03-22 01:51:57.298 | INFO     | src.scrapers.base:scrape:37 - [量子位] Fetching top 5 items...
-2026-03-22 01:51:57.320 | INFO     | src.scrapers.base:scrape:37 - [AITOP100] Fetching top 5 items...
-2026-03-22 01:51:57.341 | INFO     | src.scrapers.base:scrape:37 - [GitHub Trending] Fetching top 5 items...
-2026-03-22 01:51:58.228 | SUCCESS  | src.scrapers.base:scrape:40 - [GitHub Trending] Got 5 items
-2026-03-22 01:51:58.266 | SUCCESS  | src.scrapers.base:scrape:40 - [机器之心] Got 3 items
-2026-03-22 01:51:58.715 | SUCCESS  | src.scrapers.base:scrape:40 - [新智元] Got 5 items
-2026-03-22 01:52:00.061 | SUCCESS  | src.scrapers.base:scrape:40 - [AITOP100] Got 5 items
-2026-03-22 01:52:18.637 | ERROR    | src.scrapers.base:scrape:48 - [量子位] Scrape failed: 
-2026-03-22 01:52:18.637 | INFO     | src.agent:run:96 - Scraping done: 19 items from 5 sources
-2026-03-22 01:52:18.637 | INFO     | src.agent:run:101 - Step 2/4: Running AI analysis...
-2026-03-22 01:52:18.637 | DEBUG    | src.analyzer.llm:analyze:87 - AI analysis prompt (700 chars)
-2026-03-22 01:52:32.115 | DEBUG    | src.analyzer.llm:analyze:124 - LLM raw response (353 chars): {
-  "summary": "AI应用落地加速，部署挑战、设计变革与行业专用工具成焦点，Gemini展现科研潜力。",
+2026-03-23 01:53:08.104 | INFO     | src.agent:_init_analyzer:62 - AI analyzer: model=stepfun/step-3.5-flash:free, base=https://openrouter.ai/api/v1
+2026-03-23 01:53:08.105 | INFO     | src.agent:run:88 - === Morning Briefing Agent START ===
+2026-03-23 01:53:08.105 | INFO     | src.agent:run:92 - Step 1/4: Scraping 5 sources...
+2026-03-23 01:53:08.105 | INFO     | src.scrapers.base:scrape:37 - [机器之心] Fetching top 5 items...
+2026-03-23 01:53:08.174 | INFO     | src.scrapers.base:scrape:37 - [新智元] Fetching top 5 items...
+2026-03-23 01:53:08.196 | INFO     | src.scrapers.base:scrape:37 - [量子位] Fetching top 5 items...
+2026-03-23 01:53:08.217 | INFO     | src.scrapers.base:scrape:37 - [AITOP100] Fetching top 5 items...
+2026-03-23 01:53:08.238 | INFO     | src.scrapers.base:scrape:37 - [GitHub Trending] Fetching top 5 items...
+2026-03-23 01:53:09.120 | SUCCESS  | src.scrapers.base:scrape:40 - [机器之心] Got 3 items
+2026-03-23 01:53:09.467 | SUCCESS  | src.scrapers.base:scrape:40 - [GitHub Trending] Got 5 items
+2026-03-23 01:53:09.719 | SUCCESS  | src.scrapers.base:scrape:40 - [新智元] Got 5 items
+2026-03-23 01:53:10.281 | SUCCESS  | src.scrapers.base:scrape:40 - [量子位] Got 5 items
+2026-03-23 01:53:10.763 | SUCCESS  | src.scrapers.base:scrape:40 - [AITOP100] Got 5 items
+2026-03-23 01:53:10.763 | INFO     | src.agent:run:96 - Scraping done: 23 items from 5 sources
+2026-03-23 01:53:10.763 | INFO     | src.agent:run:101 - Step 2/4: Running AI analysis...
+2026-03-23 01:53:10.763 | DEBUG    | src.analyzer.llm:analyze:87 - AI analysis prompt (825 chars)
+2026-03-23 01:53:20.690 | DEBUG    | src.analyzer.llm:analyze:124 - LLM raw response (323 chars): {
+  "summary": "AI部署基础设施受关注，工具链与社区文化成热点。",
   "trends": [
-    "AI模型部署的基础设施与工程化瓶颈成为产业核心挑战。",
-    "AI深度融入设计、办公等专业领域，催生新工作流与竞争。",
-    "开发工具链（安全、系统）演进支撑AI应用规模化与可靠性。"
+    "AI部署基础设施挑战凸显，规模化落地成关键瓶颈。",
+    "自动化工具与AI代理框架快速迭代，开发门槛持续降低。",
+    "行业文化梗（如token翻译）传播，反映社区活力与自省。"
   ],
   "must_read": "从「模型」到「部署」，如何理解 AI 技术进步背后的基础设施挑战？",
-  "must_read_reason": "直击行业痛点，剖析从研发到规模化应用的关键障碍，对技术决策具有普适指导意义。",
-
-2026-03-22 01:52:32.116 | SUCCESS  | src.analyzer.llm:analyze:133 - AI analysis done: AI应用落地加速，部署挑战、设计变革与行业专用工具成焦点，Gemini展现科研潜...
-2026-03-22 01:52:32.116 | INFO     | src.agent:run:107 - Step 3/4: Generating HTML report & screenshot...
-2026-03-22 01:52:32.126 | SUCCESS  | src.report.generator:render_html:46 - HTML report saved: output/briefing_2026-03-22.html
-2026-03-22 01:52:36.807 | SUCCESS  | src.report.generator:screenshot:65 - Screenshot saved: output/briefing_2026-03-22.png (781 KB)
-2026-03-22 01:52:36.808 | INFO     | src.agent:run:112 - Step 4/4: Sending to Feishu...
-2026-03-22 01:52:39.105 | SUCCESS  | src.notifier.feishu:_get_token:37 - Feishu tenant_access_token acquired
-2026-03-22 01:52:41.213 | SUCCESS  | src.notifier.feishu:_upload_image:55 - Image uploaded to Feishu: img_v3_02101_630494cc-ad96-4201-b483-9d83a4e2035g
-2026-03-22 01:52:42.885 | SUCCESS  | src.notifier.feishu:send:92 - Feishu image sent
-2026-03-22 01:52:43.961 | SUCCESS  | src.notifier.feishu:send:112 - Feishu report link sent: https://tingtingxiao0706.github.io/morning-briefing/briefing_2026-03-22.html
-2026-03-22 01:52:43.961 | SUCCESS  | src.agent:run:117 - Feishu notification sent!
-2026-03-22 01:52:43.961 | INFO     | src.agent:run:126 - === Morning Briefing Agent DONE in 46.7s ===
-2026-03-22 01:52:43.962 | INFO     | __main__:main:61 - Report saved to: output/briefing_2026-03-22.png
+  "must_read_reason": "直击AI从实验室到生产环境的根本障碍，对工程团队有极高参考价值。",
+  "outlook": "开发者需重视部署与工具链，
+2026-03-23 01:53:20.691 | SUCCESS  | src.analyzer.llm:analyze:133 - AI analysis done: AI部署基础设施受关注，工具链与社区文化成热点。...
+2026-03-23 01:53:20.691 | INFO     | src.agent:run:107 - Step 3/4: Generating HTML report & screenshot...
+2026-03-23 01:53:20.702 | SUCCESS  | src.report.generator:render_html:46 - HTML report saved: output/briefing_2026-03-23.html
+2026-03-23 01:53:24.552 | SUCCESS  | src.report.generator:screenshot:65 - Screenshot saved: output/briefing_2026-03-23.png (811 KB)
+2026-03-23 01:53:24.553 | INFO     | src.agent:run:112 - Step 4/4: Sending to Feishu...
+2026-03-23 01:53:26.034 | SUCCESS  | src.notifier.feishu:_get_token:37 - Feishu tenant_access_token acquired
+2026-03-23 01:53:28.908 | SUCCESS  | src.notifier.feishu:_upload_image:55 - Image uploaded to Feishu: img_v3_02102_ce3cd423-83ad-4fb6-bbfd-6de54d5d35fg
+2026-03-23 01:53:30.498 | SUCCESS  | src.notifier.feishu:send:92 - Feishu image sent
+2026-03-23 01:53:31.473 | SUCCESS  | src.notifier.feishu:send:112 - Feishu report link sent: https://tingtingxiao0706.github.io/morning-briefing/briefing_2026-03-23.html
+2026-03-23 01:53:31.473 | SUCCESS  | src.agent:run:117 - Feishu notification sent!
+2026-03-23 01:53:31.473 | INFO     | src.agent:run:126 - === Morning Briefing Agent DONE in 23.4s ===
+2026-03-23 01:53:31.474 | INFO     | __main__:main:61 - Report saved to: output/briefing_2026-03-23.png
