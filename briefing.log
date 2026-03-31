@@ -1,36 +1,34 @@
-2026-03-30 02:02:58.536 | INFO     | src.agent:_init_analyzer:62 - AI analyzer: model=stepfun/step-3.5-flash:free, base=https://openrouter.ai/api/v1
-2026-03-30 02:02:58.536 | INFO     | src.agent:run:88 - === Morning Briefing Agent START ===
-2026-03-30 02:02:58.536 | INFO     | src.agent:run:92 - Step 1/4: Scraping 5 sources...
-2026-03-30 02:02:58.537 | INFO     | src.scrapers.base:scrape:37 - [机器之心] Fetching top 5 items...
-2026-03-30 02:02:58.603 | INFO     | src.scrapers.base:scrape:37 - [新智元] Fetching top 5 items...
-2026-03-30 02:02:58.625 | INFO     | src.scrapers.base:scrape:37 - [量子位] Fetching top 5 items...
-2026-03-30 02:02:58.647 | INFO     | src.scrapers.base:scrape:37 - [AITOP100] Fetching top 5 items...
-2026-03-30 02:02:58.668 | INFO     | src.scrapers.base:scrape:37 - [GitHub Trending] Fetching top 5 items...
-2026-03-30 02:02:59.214 | SUCCESS  | src.scrapers.base:scrape:40 - [机器之心] Got 0 items
-2026-03-30 02:02:59.753 | SUCCESS  | src.scrapers.base:scrape:40 - [新智元] Got 5 items
-2026-03-30 02:02:59.896 | SUCCESS  | src.scrapers.base:scrape:40 - [GitHub Trending] Got 5 items
-2026-03-30 02:02:59.914 | SUCCESS  | src.scrapers.base:scrape:40 - [量子位] Got 5 items
-2026-03-30 02:03:00.811 | SUCCESS  | src.scrapers.base:scrape:40 - [AITOP100] Got 5 items
-2026-03-30 02:03:00.811 | INFO     | src.agent:run:96 - Scraping done: 20 items from 5 sources
-2026-03-30 02:03:00.811 | INFO     | src.agent:run:101 - Step 2/4: Running AI analysis...
-2026-03-30 02:03:00.811 | DEBUG    | src.analyzer.llm:analyze:87 - AI analysis prompt (665 chars)
-2026-03-30 02:03:25.509 | DEBUG    | src.analyzer.llm:analyze:124 - LLM raw response (455 chars): {
-  "summary": "今日AI动态聚焦产业化媒体解析、术语翻译幽默、3D打印与汽车AI应用、音乐生成个性化及开源工具活跃，展现多领域创新。",
+2026-03-31 01:58:35.732 | INFO     | src.agent:_init_analyzer:62 - AI analyzer: model=stepfun/step-3.5-flash:free, base=https://openrouter.ai/api/v1
+2026-03-31 01:58:35.733 | INFO     | src.agent:run:88 - === Morning Briefing Agent START ===
+2026-03-31 01:58:35.733 | INFO     | src.agent:run:92 - Step 1/4: Scraping 5 sources...
+2026-03-31 01:58:35.733 | INFO     | src.scrapers.base:scrape:37 - [机器之心] Fetching top 5 items...
+2026-03-31 01:58:35.800 | INFO     | src.scrapers.base:scrape:37 - [新智元] Fetching top 5 items...
+2026-03-31 01:58:35.821 | INFO     | src.scrapers.base:scrape:37 - [量子位] Fetching top 5 items...
+2026-03-31 01:58:35.843 | INFO     | src.scrapers.base:scrape:37 - [AITOP100] Fetching top 5 items...
+2026-03-31 01:58:35.864 | INFO     | src.scrapers.base:scrape:37 - [GitHub Trending] Fetching top 5 items...
+2026-03-31 01:58:36.520 | SUCCESS  | src.scrapers.base:scrape:40 - [机器之心] Got 0 items
+2026-03-31 01:58:37.088 | SUCCESS  | src.scrapers.base:scrape:40 - [GitHub Trending] Got 5 items
+2026-03-31 01:58:37.102 | SUCCESS  | src.scrapers.base:scrape:40 - [新智元] Got 5 items
+2026-03-31 01:58:37.174 | SUCCESS  | src.scrapers.base:scrape:40 - [量子位] Got 5 items
+2026-03-31 01:58:38.553 | SUCCESS  | src.scrapers.base:scrape:40 - [AITOP100] Got 5 items
+2026-03-31 01:58:38.553 | INFO     | src.agent:run:96 - Scraping done: 20 items from 5 sources
+2026-03-31 01:58:38.553 | INFO     | src.agent:run:101 - Step 2/4: Running AI analysis...
+2026-03-31 01:58:38.553 | DEBUG    | src.analyzer.llm:analyze:87 - AI analysis prompt (679 chars)
+2026-03-31 01:59:03.455 | DEBUG    | src.analyzer.llm:analyze:124 - LLM raw response (127 chars): {
+  "summary": "AI工具向全链路自动化发展，开源项目加速企业部署，AIGC革新音频创作，社区热议术语翻译。",
   "trends": [
-    "AI产业化媒体深化解读，术语翻译如'新智元'引发圈内趣味讨论与反思。",
-    "生成式AI向音乐、汽车等垂直领域渗透，实现人声克隆、世界模型等个性化应用。",
-    "开源AI项目如VibeVoice和hermes-agent在GitHub trending，社区创新推动工具普及。"
-  ],
-  "must_read": "[AITOP100] Suno v5.5上线：新增人声克隆与风格训练，AI
-2026-03-30 02:03:25.509 | SUCCESS  | src.analyzer.llm:analyze:133 - AI analysis done: 今日AI动态聚焦产业化媒体解析、术语翻译幽默、3D打印与汽车AI应用、音乐生成个...
-2026-03-30 02:03:25.509 | INFO     | src.agent:run:107 - Step 3/4: Generating HTML report & screenshot...
-2026-03-30 02:03:25.520 | SUCCESS  | src.report.generator:render_html:46 - HTML report saved: output/briefing_2026-03-30.html
-2026-03-30 02:03:30.454 | SUCCESS  | src.report.generator:screenshot:65 - Screenshot saved: output/briefing_2026-03-30.png (822 KB)
-2026-03-30 02:03:30.454 | INFO     | src.agent:run:112 - Step 4/4: Sending to Feishu...
-2026-03-30 02:03:31.617 | SUCCESS  | src.notifier.feishu:_get_token:37 - Feishu tenant_access_token acquired
-2026-03-30 02:03:33.722 | SUCCESS  | src.notifier.feishu:_upload_image:55 - Image uploaded to Feishu: img_v3_02109_a28bdca5-4423-4972-9906-c83eb860c34g
-2026-03-30 02:03:34.961 | SUCCESS  | src.notifier.feishu:send:92 - Feishu image sent
-2026-03-30 02:03:35.810 | SUCCESS  | src.notifier.feishu:send:112 - Feishu report link sent: https://tingtingxiao0706.github.io/morning-briefing/briefing_2026-03-30.html
-2026-03-30 02:03:35.810 | SUCCESS  | src.agent:run:117 - Feishu notification sent!
-2026-03-30 02:03:35.811 | INFO     | src.agent:run:126 - === Morning Briefing Agent DONE in 37.3s ===
-2026-03-30 02:03:35.812 | INFO     | __main__:main:61 - Report saved to: output/briefing_2026-03-30.png
+    "AI工具从零工任务转向营销投放全链路自动化管理",
+    "开源AI项目如OpenCl
+2026-03-31 01:59:03.455 | WARNING  | src.analyzer.llm:analyze:140 - AI primary parse failed: No valid JSON found: line 1 column 1 (char 0), retrying with short prompt...
+2026-03-31 01:59:11.920 | WARNING  | src.analyzer.llm:_retry_short:224 - AI retry also failed: No valid JSON found: line 1 column 1 (char 0)
+2026-03-31 01:59:11.921 | INFO     | src.agent:run:107 - Step 3/4: Generating HTML report & screenshot...
+2026-03-31 01:59:11.932 | SUCCESS  | src.report.generator:render_html:46 - HTML report saved: output/briefing_2026-03-31.html
+2026-03-31 01:59:15.570 | SUCCESS  | src.report.generator:screenshot:65 - Screenshot saved: output/briefing_2026-03-31.png (660 KB)
+2026-03-31 01:59:15.570 | INFO     | src.agent:run:112 - Step 4/4: Sending to Feishu...
+2026-03-31 01:59:16.455 | SUCCESS  | src.notifier.feishu:_get_token:37 - Feishu tenant_access_token acquired
+2026-03-31 01:59:18.653 | SUCCESS  | src.notifier.feishu:_upload_image:55 - Image uploaded to Feishu: img_v3_0210a_66abc219-3571-4eba-8f2b-87efe79e292g
+2026-03-31 01:59:19.915 | SUCCESS  | src.notifier.feishu:send:92 - Feishu image sent
+2026-03-31 01:59:21.140 | SUCCESS  | src.notifier.feishu:send:112 - Feishu report link sent: https://tingtingxiao0706.github.io/morning-briefing/briefing_2026-03-31.html
+2026-03-31 01:59:21.140 | SUCCESS  | src.agent:run:117 - Feishu notification sent!
+2026-03-31 01:59:21.140 | INFO     | src.agent:run:126 - === Morning Briefing Agent DONE in 45.4s ===
+2026-03-31 01:59:21.141 | INFO     | __main__:main:61 - Report saved to: output/briefing_2026-03-31.png
