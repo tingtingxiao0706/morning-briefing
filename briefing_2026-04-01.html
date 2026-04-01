@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>晨间简报 - 2026-04-01</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #e0e0e0;
+    max-width: 800px;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 32px;
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 600px) {
+    .container { padding: 24px 16px; }
+    .header h1 { font-size: 24px; }
+    .header .date { font-size: 12px; letter-spacing: 1.5px; }
+    .stats { gap: 16px; }
+    .stat-value { font-size: 20px; }
+    .section-header { padding: 12px 16px; }
+    .section-icon { width: 30px; height: 30px; font-size: 18px; }
+    .section-name { font-size: 14px; }
+    .item { padding: 10px 16px; gap: 10px; }
+    .item-rank { width: 24px; height: 24px; font-size: 11px; border-radius: 6px; }
+    .item-title { font-size: 13px; }
+    .item-summary { font-size: 11px; }
+    .item-score { font-size: 11px; padding: 3px 8px; }
+    .ai-analysis { padding: 16px; }
+    .ai-summary { font-size: 13px; padding: 10px 12px; }
+    .ai-trend-item { font-size: 12px; }
+    .ai-must-read { padding: 10px 12px; }
+    .ai-must-read-title { font-size: 13px; }
+    .ai-analysis-header .ai-title { font-size: 14px; }
+    .ai-analysis-header .ai-icon { width: 30px; height: 30px; font-size: 16px; }
+  }
+
+  /* --- Header --- */
+  .header {
+    text-align: center;
+    margin-bottom: 36px;
+    position: relative;
+  }
+
+  .header::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #6c63ff, #e94560);
+    margin: 18px auto 0;
+    border-radius: 2px;
+  }
+
+  .header .date {
+    font-size: 14px;
+    color: #9e9e9e;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #6c63ff 0%, #e94560 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.3;
+  }
+
+  .header .subtitle {
+    font-size: 13px;
+    color: #757575;
+    margin-top: 8px;
+  }
+
+  /* --- Section --- */
+  .section {
+    margin-bottom: 28px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .section-icon {
+    font-size: 22px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .section-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+  .section-badge {
+    margin-left: auto;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  /* --- Item --- */
+  .item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    transition: background 0.2s;
+  }
+
+  .item:last-child { border-bottom: none; }
+  .item:hover { background: rgba(255, 255, 255, 0.03); }
+
+  .item-rank {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .item-rank.rank-1 { background: linear-gradient(135deg, #f5af19, #f12711); }
+  .item-rank.rank-2 { background: linear-gradient(135deg, #667eea, #764ba2); }
+  .item-rank.rank-3 { background: linear-gradient(135deg, #11998e, #38ef7d); }
+  .item-rank.rank-default { background: rgba(255, 255, 255, 0.1); }
+
+  .item-content { flex: 1; min-width: 0; }
+
+  .item-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #f0f0f0;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .item-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .item-title a:hover {
+    color: #9e8cff;
+    text-decoration: underline;
+  }
+
+  .item-summary {
+    font-size: 12px;
+    color: #9e9e9e;
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  .item-score {
+    flex-shrink: 0;
+    font-size: 12px;
+    color: #bbb;
+    padding: 4px 10px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    white-space: nowrap;
+    align-self: center;
+  }
+
+  /* --- Footer --- */
+  .footer {
+    text-align: center;
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 12px;
+    color: #616161;
+  }
+
+  .footer .generated {
+    margin-bottom: 4px;
+  }
+
+  .footer .powered {
+    color: #757575;
+  }
+
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 12px;
+    margin-bottom: 28px;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #6c63ff, #e94560);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: #757575;
+    margin-top: 2px;
+  }
+
+  /* --- AI Analysis --- */
+  .ai-analysis {
+    margin-bottom: 28px;
+    background: linear-gradient(135deg, rgba(108, 99, 255, 0.12), rgba(233, 69, 96, 0.08));
+    border-radius: 16px;
+    border: 1px solid rgba(108, 99, 255, 0.2);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ai-analysis::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #6c63ff, #e94560, #6c63ff);
+  }
+
+  .ai-analysis-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .ai-analysis-header .ai-icon {
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #6c63ff, #e94560);
+  }
+
+  .ai-analysis-header .ai-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .ai-analysis-header .ai-badge {
+    margin-left: auto;
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(108, 99, 255, 0.3);
+    color: #b8b0ff;
+    font-weight: 500;
+  }
+
+  .ai-summary {
+    font-size: 15px;
+    font-weight: 500;
+    color: #f0f0f0;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    border-left: 3px solid #6c63ff;
+  }
+
+  .ai-trends {
+    margin-bottom: 16px;
+  }
+
+  .ai-trends-label {
+    font-size: 12px;
+    color: #9e9e9e;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  .ai-trend-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 6px 0;
+    font-size: 13px;
+    color: #d0d0d0;
+    line-height: 1.5;
+  }
+
+  .ai-trend-dot {
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6c63ff, #e94560);
+    margin-top: 6px;
+  }
+
+  .ai-must-read {
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    margin-bottom: 12px;
+  }
+
+  .ai-must-read-label {
+    font-size: 11px;
+    color: #e94560;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+
+  .ai-must-read-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #f0f0f0;
+    margin-bottom: 4px;
+  }
+
+  .ai-must-read-reason {
+    font-size: 12px;
+    color: #9e9e9e;
+    line-height: 1.4;
+  }
+
+  .ai-outlook {
+    font-size: 13px;
+    color: #b0b0b0;
+    font-style: italic;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="date">2026-04-01 · 周三</div>
+    <h1>☀ 晨间简报</h1>
+    <div class="subtitle">开发者每日精选资讯</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-value">5</div>
+      <div class="stat-label">数据来源</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value">20</div>
+      <div class="stat-label">资讯条目</div>
+    </div>
+  </div>
+
+  
+  <div class="ai-analysis">
+    <div class="ai-analysis-header">
+      <div class="ai-icon">✦</div>
+      <div class="ai-title">AI 编辑观点</div>
+      <div class="ai-badge">AI Generated</div>
+    </div>
+
+    <div class="ai-summary">多模态与行业应用深化，大模型商业价值凸显。</div>
+
+    
+    <div class="ai-trends">
+      <div class="ai-trends-label">趋势洞察</div>
+      
+      <div class="ai-trend-item">
+        <div class="ai-trend-dot"></div>
+        <span>大模型公司商业化加速，智谱财报印证MaaS模式国内领先。</span>
+      </div>
+      
+      <div class="ai-trend-item">
+        <div class="ai-trend-dot"></div>
+        <span>AI开发工具边界扩展，TRAE等从代码生成迈向跨领域任务。</span>
+      </div>
+      
+      <div class="ai-trend-item">
+        <div class="ai-trend-dot"></div>
+        <span>生成式AI追求物理真实，PixVerse V6引领视频生成新标准。</span>
+      </div>
+      
+    </div>
+    
+
+    
+    <div class="ai-must-read">
+      <div class="ai-must-read-label">必读推荐</div>
+      <div class="ai-must-read-title">量子位] 智谱上市后首份财报：超7.24亿元！国内收入最高大模型公司，MaaS发力了</div>
+      
+      <div class="ai-must-read-reason">首份财报揭示国内大模型公司盈利路径，为行业商业化提供关键参考。</div>
+      
+    </div>
+    
+
+    
+    <div class="ai-outlook">💡 开发者需掌握多模态与垂直领域技能，行业竞争聚焦落地深度与生态构建。</div>
+    
+  </div>
+  
+
+  
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🤖</div>
+      <div class="section-name">机器之心</div>
+      <div class="section-badge" style="background: #1E88E5;">
+        0 条
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🧠</div>
+      <div class="section-name">新智元</div>
+      <div class="section-badge" style="background: #E53935;">
+        5 条
+      </div>
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-1">
+        1
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgSyTBrYgRUbcH5gx9U-VFI6RLAL_DD8Uvs1qXa8Fplpd9TRzCOtKj2k4TDQw4ce9KLhOoegGsBLFzWFaMMsWdfrvx49v-gz2RjhTFWh1PPbkIkYUbDHXpBan52dhz4lOB6SWKcdyC93fIacOrANOsZdubXcx2ROOqNchBlIWfbUh1Ab-21jM1W8-xH_ZOgrq8_GPEVJ3wI-0xQ_ViEklkL7JS6t2rFt2rnA..&amp;type=2&amp;query=%E6%96%B0%E6%99%BA%E5%85%83&amp;token=280B1B4A16165EB7B3B4FDEE38F154AAB3C79A0B69CC7DD8">新智元—AI 产业化媒体深度解析</a>
+        </div>
+        
+        <div class="item-summary">作者: 光头佬发布日期: 2026-03-21类型: 企业商业分析   快速预览项目内容公司名称北京新智元科技有限公司品牌名称新智元/ AI_...</div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-2">
+        2
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgSyTBrYgRUbcH5gx9U-VFI6RLAL_DD8Uvs1qXa8Fplpd9cMGWHZjTGnP0CAP1tCtkR3AjcIBbTp6fKCahz32oFlEiZSGBZXbChrRZJ1oIvIJKAo4a6Vm6ynBnrEJev3EFnJPOI9_E8mLx3J9hlwley7IB9PFwPOUW0WC-F-BDiKiIY5BteRBqkwn0j5gOXbUcFhOm8f7jauQvwkBpt9hrW9fFcvUoAZZH7Q..&amp;type=2&amp;query=%E6%96%B0%E6%99%BA%E5%85%83&amp;token=280B1B4A16165EB7B3B4FDEE38F154AAB3C79A0B69CC7DD8">为什么 token 会被翻译成“新智元”?这可能是最近 AI 圈最好笑的梗</a>
+        </div>
+        
+        <div class="item-summary">最该翻成“新智元”.这就厉害了.如果它只是瞎起哄,梗不会这么大.它恰恰是拿一套最正经的写法,端端正正地说了一个所有人都...</div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-3">
+        3
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgSyTBrYgRUbcH5gx9U-VFI6RLAL_DD8Uvs1qXa8Fplpd9v8ZCVv7kUVzlIRzMt-wAx81_ylNfyypUz8btSWc7v7Y0wBsXBejCZSzSGkRc9Ope4aWg6RQOFwVnmJoMgLbs-bhMgnU_FCWKhj5skMfamNcIWRV9HZvY_tDPTuasqv6Z58007kM66mKs83smwc4uiuwcQDuQSuOLgeXbYBD7ErKq3X8EKMKOIA..&amp;type=2&amp;query=%E6%96%B0%E6%99%BA%E5%85%83&amp;token=280B1B4A16165EB7B3B4FDEE38F154AAB3C79A0B69CC7DD8">Token,不该翻成「新智元」</a>
+        </div>
+        
+        <div class="item-summary">最近看到一篇很用心的文章,提议把 Token 翻译成「新智元」.信息论、构词法、经济学、翻译学,四个维度轮番论证,写得很漂亮...</div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-default">
+        4
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgSyTBrYgRUbcH5gx9U-VFI6RLAL_DD8Uvs1qXa8Fplpd9rXca4zvUVOmFM8Tm59UTIwgVRJhWnqvHT4v4rG0rD6gACwMURO7PIkZ7YGQZuoIN-EVgZuci-oIUp-2eiGfI29yaOvJjZEgpfcUuaG1kjTeEDUXEpcX61ZzvGJrjn0xMVklxkJz9B5ibVl8VStYLWRqbiN-2vQAAHEg9-hrmVgjy08OLTBhW0A..&amp;type=2&amp;query=%E6%96%B0%E6%99%BA%E5%85%83&amp;token=280B1B4A16165EB7B3B4FDEE38F154AAB3C79A0B69CC7DD8">转自新智元:哈佛物理教授疯了:我让AI写论文,结果两周干完博士一年工作!冲击顶刊</a>
+        </div>
+        
+        <div class="item-summary">转自新智元:哈佛物理教授疯了:我让AI写论文,结果两周干完博士一年工作!冲击顶刊新智元2026年3月24日 17:15北京新智元报道 ...</div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-default">
+        5
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://weixin.sogou.com/link?url=dn9a_-gY295K0Rci_xozVXfdMkSQTLW6cwJThYulHEtVjXrGTiVgSyTBrYgRUbcH5gx9U-VFI6RLAL_DD8Uvs1qXa8Fplpd9TqxQAH0EMXYHJF4ZewyoWdWs9obQtZQrAT8w5zzvMM_h2PKEp3DuP_sGV7uP2MgsCkIc8KXnOBDeIj9Y0ROP509TCQpvbJgmCqm_X2AGeAXqc_Rxre9OjbQR2jK_T4eI4Se0VcvpMa2YOiFBdcvRU-mNHiN-jXUN8ToLgIjU6ALyPfCoem7FzA..&amp;type=2&amp;query=%E6%96%B0%E6%99%BA%E5%85%83&amp;token=280B1B4A16165EB7B3B4FDEE38F154AAB3C79A0B69CC7DD8">【新智元3·29峰会嘉宾曝光】诺奖评审x技术领袖详解AI产业跃迁路线图</a>
+        </div>
+        
+        <div class="item-summary">新智元“产业·跃迁”AI技术峰会 2018年3月14日,微软宣布其研发的机器翻译系统首次在通用新闻的汉英翻译上达到了人类专业水平...</div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+  
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">⚛️</div>
+      <div class="section-name">量子位</div>
+      <div class="section-badge" style="background: #7C4DFF;">
+        5 条
+      </div>
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-1">
+        1
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://www.qbitai.com/2026/03/394135.html">智谱上市后首份财报：超7.24亿元！国内收入最高大模型公司，MaaS发力了</a>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-2">
+        2
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://www.qbitai.com/2026/03/394014.html">刚刚，TRAE SOLO上线独立端：已经不满足写代码，还要跨界干活！</a>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-3">
+        3
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://www.qbitai.com/2026/03/393984.html">智能体收入暴增68%！这家港股AI公司靠「关系」驯服企业龙虾</a>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-default">
+        4
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://www.qbitai.com/2026/03/393887.html">机器人线下真机对线打PK！这届黑客松可太会玩了</a>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-default">
+        5
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://www.qbitai.com/2026/04/394169.html">1220亿美元！OpenAI创下史上最大单笔融资纪录</a>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+  
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🏆</div>
+      <div class="section-name">AITOP100</div>
+      <div class="section-badge" style="background: #FF6F00;">
+        5 条
+      </div>
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-1">
+        1
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://www.aitop100.cn/ai-daily-2026-03-31">今日AI快讯-2026年3月31日</a>
+        </div>
+        
+        <div class="item-summary">AI top100</div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-2">
+        2
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://www.aitop100.cn/ai-daily-2026-03-31">每日AI资讯-2026年3月31日</a>
+        </div>
+        
+        <div class="item-summary">AI TOP100</div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-3">
+        3
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://www.aitop100.cn/">PixVerse V6震撼发布：AI视频迈入&#34;物理常识&#34;时代</a>
+        </div>
+        
+        <div class="item-summary">AI TOP100</div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-default">
+        4
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://www.aitop100.cn/">Qwen3.5-Omni震撼发布：215项SOTA开启全感官AI时代</a>
+        </div>
+        
+        <div class="item-summary">AI TOP100</div>
+        
+      </div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-default">
+        5
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://www.aitop100.cn/">Tunee上线MV智能体，AI音乐下半场进入&#34;人人造星&#34;时刻</a>
+        </div>
+        
+        <div class="item-summary">AI TOP100</div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+  
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">⭐</div>
+      <div class="section-name">GitHub Trending</div>
+      <div class="section-badge" style="background: #238636;">
+        5 条
+      </div>
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-1">
+        1
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://github.com/luongnv89/claude-howto">luongnv89/claude-howto</a>
+        </div>
+        
+        <div class="item-summary">Python · ★ 13,256 · 2,390 stars today</div>
+        
+      </div>
+      
+      <div class="item-score">13256</div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-2">
+        2
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://github.com/microsoft/VibeVoice">microsoft/VibeVoice</a>
+        </div>
+        
+        <div class="item-summary">Python · ★ 33,225 · 3,863 stars today</div>
+        
+      </div>
+      
+      <div class="item-score">33225</div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-3">
+        3
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://github.com/Yeachan-Heo/oh-my-claudecode">Yeachan-Heo/oh-my-claudecode</a>
+        </div>
+        
+        <div class="item-summary">TypeScript · ★ 19,199 · 1,126 stars today</div>
+        
+      </div>
+      
+      <div class="item-score">19199</div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-default">
+        4
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://github.com/shanraisshan/claude-code-best-practice">shanraisshan/claude-code-best-practice</a>
+        </div>
+        
+        <div class="item-summary">HTML · ★ 28,819 · 2,407 stars today</div>
+        
+      </div>
+      
+      <div class="item-score">28819</div>
+      
+    </div>
+    
+    <div class="item">
+      <div class="item-rank rank-default">
+        5
+      </div>
+      <div class="item-content">
+        <div class="item-title">
+          <a href="https://github.com/NousResearch/hermes-agent">NousResearch/hermes-agent</a>
+        </div>
+        
+        <div class="item-summary">Python · ★ 20,439 · 1,907 stars today</div>
+        
+      </div>
+      
+      <div class="item-score">20439</div>
+      
+    </div>
+    
+  </div>
+  
+
+  <div class="footer">
+    <div class="generated">生成于 2026-04-01 02:07:34</div>
+    <div class="powered">Morning Briefing Agent · Powered by Python</div>
+  </div>
+</div>
+</body>
+</html>
