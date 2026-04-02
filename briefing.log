@@ -1,38 +1,37 @@
-2026-04-01 02:07:19.336 | INFO     | src.agent:_init_analyzer:62 - AI analyzer: model=stepfun/step-3.5-flash:free, base=https://openrouter.ai/api/v1
-2026-04-01 02:07:19.336 | INFO     | src.agent:run:88 - === Morning Briefing Agent START ===
-2026-04-01 02:07:19.337 | INFO     | src.agent:run:92 - Step 1/4: Scraping 5 sources...
-2026-04-01 02:07:19.337 | INFO     | src.scrapers.base:scrape:37 - [机器之心] Fetching top 5 items...
-2026-04-01 02:07:19.402 | INFO     | src.scrapers.base:scrape:37 - [新智元] Fetching top 5 items...
-2026-04-01 02:07:19.424 | INFO     | src.scrapers.base:scrape:37 - [量子位] Fetching top 5 items...
-2026-04-01 02:07:19.445 | INFO     | src.scrapers.base:scrape:37 - [AITOP100] Fetching top 5 items...
-2026-04-01 02:07:19.466 | INFO     | src.scrapers.base:scrape:37 - [GitHub Trending] Fetching top 5 items...
-2026-04-01 02:07:20.370 | SUCCESS  | src.scrapers.base:scrape:40 - [机器之心] Got 0 items
-2026-04-01 02:07:20.674 | SUCCESS  | src.scrapers.base:scrape:40 - [GitHub Trending] Got 5 items
-2026-04-01 02:07:20.941 | SUCCESS  | src.scrapers.base:scrape:40 - [新智元] Got 5 items
-2026-04-01 02:07:21.256 | SUCCESS  | src.scrapers.base:scrape:40 - [量子位] Got 5 items
-2026-04-01 02:07:22.273 | SUCCESS  | src.scrapers.base:scrape:40 - [AITOP100] Got 5 items
-2026-04-01 02:07:22.273 | INFO     | src.agent:run:96 - Scraping done: 20 items from 5 sources
-2026-04-01 02:07:22.273 | INFO     | src.agent:run:101 - Step 2/4: Running AI analysis...
-2026-04-01 02:07:22.273 | DEBUG    | src.analyzer.llm:analyze:87 - AI analysis prompt (690 chars)
-2026-04-01 02:07:34.339 | DEBUG    | src.analyzer.llm:analyze:124 - LLM raw response (340 chars): {
-  "summary": "多模态与行业应用深化，大模型商业价值凸显。",
+2026-04-02 01:54:54.133 | INFO     | src.agent:_init_analyzer:62 - AI analyzer: model=stepfun/step-3.5-flash:free, base=https://openrouter.ai/api/v1
+2026-04-02 01:54:54.133 | INFO     | src.agent:run:88 - === Morning Briefing Agent START ===
+2026-04-02 01:54:54.134 | INFO     | src.agent:run:92 - Step 1/4: Scraping 5 sources...
+2026-04-02 01:54:54.134 | INFO     | src.scrapers.base:scrape:37 - [机器之心] Fetching top 5 items...
+2026-04-02 01:54:54.200 | INFO     | src.scrapers.base:scrape:37 - [新智元] Fetching top 5 items...
+2026-04-02 01:54:54.221 | INFO     | src.scrapers.base:scrape:37 - [量子位] Fetching top 5 items...
+2026-04-02 01:54:54.241 | INFO     | src.scrapers.base:scrape:37 - [AITOP100] Fetching top 5 items...
+2026-04-02 01:54:54.261 | INFO     | src.scrapers.base:scrape:37 - [GitHub Trending] Fetching top 5 items...
+2026-04-02 01:54:55.138 | SUCCESS  | src.scrapers.base:scrape:40 - [机器之心] Got 0 items
+2026-04-02 01:54:55.260 | SUCCESS  | src.scrapers.base:scrape:40 - [GitHub Trending] Got 5 items
+2026-04-02 01:54:55.635 | SUCCESS  | src.scrapers.base:scrape:40 - [新智元] Got 5 items
+2026-04-02 01:54:56.557 | SUCCESS  | src.scrapers.base:scrape:40 - [量子位] Got 5 items
+2026-04-02 01:54:56.797 | SUCCESS  | src.scrapers.base:scrape:40 - [AITOP100] Got 5 items
+2026-04-02 01:54:56.797 | INFO     | src.agent:run:96 - Scraping done: 20 items from 5 sources
+2026-04-02 01:54:56.797 | INFO     | src.agent:run:101 - Step 2/4: Running AI analysis...
+2026-04-02 01:54:56.797 | DEBUG    | src.analyzer.llm:analyze:87 - AI analysis prompt (706 chars)
+2026-04-02 01:55:09.032 | DEBUG    | src.analyzer.llm:analyze:124 - LLM raw response (422 chars): {
+  "summary": "视频生成模型竞争白热化，国产大模型商业化提速，AI工具链持续扩展。",
   "trends": [
-    "大模型公司商业化加速，智谱财报印证MaaS模式国内领先。",
-    "AI开发工具边界扩展，TRAE等从代码生成迈向跨领域任务。",
-    "生成式AI追求物理真实，PixVerse V6引领视频生成新标准。"
+    "视频生成技术突破与价格战并行，PixVerse V6增强时空处理，快手可灵降价抢夺市场。",
+    "国产大模型公司商业化成效显著，智谱上市首份财报亮眼，MaaS模式成增长关键。",
+    "AI开发工具生态丰富，Claude Code、VibeVoice等GitHub热门项目拓展应用场景。"
   ],
-  "must_read": "量子位] 智谱上市后首份财报：超7.24亿元！国内收入最高大模型公司，MaaS发力了",
-  "must_read_reason": "首份财报揭示国内大模型公司盈利路径，为行业商业化提供关键参考。",
-  "outlook
-2026-04-01 02:07:34.339 | SUCCESS  | src.analyzer.llm:analyze:133 - AI analysis done: 多模态与行业应用深化，大模型商业价值凸显。...
-2026-04-01 02:07:34.339 | INFO     | src.agent:run:107 - Step 3/4: Generating HTML report & screenshot...
-2026-04-01 02:07:34.350 | SUCCESS  | src.report.generator:render_html:46 - HTML report saved: output/briefing_2026-04-01.html
-2026-04-01 02:07:39.349 | SUCCESS  | src.report.generator:screenshot:65 - Screenshot saved: output/briefing_2026-04-01.png (790 KB)
-2026-04-01 02:07:39.349 | INFO     | src.agent:run:112 - Step 4/4: Sending to Feishu...
-2026-04-01 02:07:40.780 | SUCCESS  | src.notifier.feishu:_get_token:37 - Feishu tenant_access_token acquired
-2026-04-01 02:07:43.122 | SUCCESS  | src.notifier.feishu:_upload_image:55 - Image uploaded to Feishu: img_v3_0210b_dc2513fb-31d3-4f92-8138-32d4f0273e8g
-2026-04-01 02:07:44.424 | SUCCESS  | src.notifier.feishu:send:92 - Feishu image sent
-2026-04-01 02:07:50.406 | SUCCESS  | src.notifier.feishu:send:112 - Feishu report link sent: https://tingtingxiao0706.github.io/morning-briefing/briefing_2026-04-01.html
-2026-04-01 02:07:50.406 | SUCCESS  | src.agent:run:117 - Feishu notification sent!
-2026-04-01 02:07:50.406 | INFO     | src.agent:run:126 - === Morning Briefing Agent DONE in 31.1s ===
-2026-04-01 02:07:50.407 | INFO     | __main__:main:61 - Report saved to: output/briefing_2026-04-01.png
+  "must_read": "量子位：智谱上市后首份财报：超7.24亿元！国内收入最高大模型公司，MaaS发力了",
+  "must_read_r
+2026-04-02 01:55:09.032 | SUCCESS  | src.analyzer.llm:analyze:133 - AI analysis done: 视频生成模型竞争白热化，国产大模型商业化提速，AI工具链持续扩展。...
+2026-04-02 01:55:09.032 | INFO     | src.agent:run:107 - Step 3/4: Generating HTML report & screenshot...
+2026-04-02 01:55:09.043 | SUCCESS  | src.report.generator:render_html:46 - HTML report saved: output/briefing_2026-04-02.html
+2026-04-02 01:55:12.798 | SUCCESS  | src.report.generator:screenshot:65 - Screenshot saved: output/briefing_2026-04-02.png (811 KB)
+2026-04-02 01:55:12.798 | INFO     | src.agent:run:112 - Step 4/4: Sending to Feishu...
+2026-04-02 01:55:13.520 | SUCCESS  | src.notifier.feishu:_get_token:37 - Feishu tenant_access_token acquired
+2026-04-02 01:55:15.063 | SUCCESS  | src.notifier.feishu:_upload_image:55 - Image uploaded to Feishu: img_v3_0210c_10fdacc2-d6aa-4f4e-b5d3-d2f59ae4d7cg
+2026-04-02 01:55:15.996 | SUCCESS  | src.notifier.feishu:send:92 - Feishu image sent
+2026-04-02 01:55:17.718 | SUCCESS  | src.notifier.feishu:send:112 - Feishu report link sent: https://tingtingxiao0706.github.io/morning-briefing/briefing_2026-04-02.html
+2026-04-02 01:55:17.718 | SUCCESS  | src.agent:run:117 - Feishu notification sent!
+2026-04-02 01:55:17.718 | INFO     | src.agent:run:126 - === Morning Briefing Agent DONE in 23.6s ===
+2026-04-02 01:55:17.719 | INFO     | __main__:main:61 - Report saved to: output/briefing_2026-04-02.png
