@@ -1,38 +1,38 @@
-2026-04-06 02:03:21.466 | INFO     | src.agent:_init_analyzer:62 - AI analyzer: model=stepfun/step-3.5-flash:free, base=https://openrouter.ai/api/v1
-2026-04-06 02:03:21.467 | INFO     | src.agent:run:88 - === Morning Briefing Agent START ===
-2026-04-06 02:03:21.467 | INFO     | src.agent:run:92 - Step 1/4: Scraping 5 sources...
-2026-04-06 02:03:21.467 | INFO     | src.scrapers.base:scrape:37 - [机器之心] Fetching top 5 items...
-2026-04-06 02:03:21.534 | INFO     | src.scrapers.base:scrape:37 - [新智元] Fetching top 5 items...
-2026-04-06 02:03:21.555 | INFO     | src.scrapers.base:scrape:37 - [量子位] Fetching top 5 items...
-2026-04-06 02:03:21.576 | INFO     | src.scrapers.base:scrape:37 - [AITOP100] Fetching top 5 items...
-2026-04-06 02:03:21.598 | INFO     | src.scrapers.base:scrape:37 - [GitHub Trending] Fetching top 5 items...
-2026-04-06 02:03:21.782 | SUCCESS  | src.scrapers.base:scrape:40 - [GitHub Trending] Got 5 items
-2026-04-06 02:03:22.568 | SUCCESS  | src.scrapers.base:scrape:40 - [机器之心] Got 0 items
-2026-04-06 02:03:23.104 | SUCCESS  | src.scrapers.base:scrape:40 - [新智元] Got 5 items
-2026-04-06 02:03:23.265 | SUCCESS  | src.scrapers.base:scrape:40 - [量子位] Got 5 items
-2026-04-06 02:03:24.846 | SUCCESS  | src.scrapers.base:scrape:40 - [AITOP100] Got 5 items
-2026-04-06 02:03:24.847 | INFO     | src.agent:run:96 - Scraping done: 20 items from 5 sources
-2026-04-06 02:03:24.847 | INFO     | src.agent:run:101 - Step 2/4: Running AI analysis...
-2026-04-06 02:03:24.847 | DEBUG    | src.analyzer.llm:analyze:87 - AI analysis prompt (665 chars)
-2026-04-06 02:03:33.930 | DEBUG    | src.analyzer.llm:analyze:124 - LLM raw response (329 chars): {
-  "summary": "AI加速渗透科研与硬件，具身智能与学术伦理成焦点。",
+2026-04-07 01:59:23.948 | INFO     | src.agent:_init_analyzer:62 - AI analyzer: model=stepfun/step-3.5-flash:free, base=https://openrouter.ai/api/v1
+2026-04-07 01:59:23.948 | INFO     | src.agent:run:88 - === Morning Briefing Agent START ===
+2026-04-07 01:59:23.949 | INFO     | src.agent:run:92 - Step 1/4: Scraping 5 sources...
+2026-04-07 01:59:23.949 | INFO     | src.scrapers.base:scrape:37 - [机器之心] Fetching top 5 items...
+2026-04-07 01:59:24.015 | INFO     | src.scrapers.base:scrape:37 - [新智元] Fetching top 5 items...
+2026-04-07 01:59:24.039 | INFO     | src.scrapers.base:scrape:37 - [量子位] Fetching top 5 items...
+2026-04-07 01:59:24.073 | INFO     | src.scrapers.base:scrape:37 - [AITOP100] Fetching top 5 items...
+2026-04-07 01:59:24.106 | INFO     | src.scrapers.base:scrape:37 - [GitHub Trending] Fetching top 5 items...
+2026-04-07 01:59:24.953 | SUCCESS  | src.scrapers.base:scrape:40 - [机器之心] Got 0 items
+2026-04-07 01:59:25.101 | SUCCESS  | src.scrapers.base:scrape:40 - [GitHub Trending] Got 5 items
+2026-04-07 01:59:26.028 | SUCCESS  | src.scrapers.base:scrape:40 - [量子位] Got 5 items
+2026-04-07 01:59:26.878 | SUCCESS  | src.scrapers.base:scrape:40 - [AITOP100] Got 5 items
+2026-04-07 01:59:30.179 | SUCCESS  | src.scrapers.base:scrape:40 - [新智元] Got 5 items
+2026-04-07 01:59:30.180 | INFO     | src.agent:run:96 - Scraping done: 20 items from 5 sources
+2026-04-07 01:59:30.180 | INFO     | src.agent:run:101 - Step 2/4: Running AI analysis...
+2026-04-07 01:59:30.180 | DEBUG    | src.analyzer.llm:analyze:87 - AI analysis prompt (687 chars)
+2026-04-07 01:59:45.146 | DEBUG    | src.analyzer.llm:analyze:124 - LLM raw response (442 chars): ```json
+{
+  "summary": "技术突破与行业震荡并存，AI学术应用伦理危机凸显。",
   "trends": [
-    "AI科研助手冲击学术生产与诚信体系，需建立新规范。",
-    "具身智能硬件创新涌现，专用设备适配Agent工作流。",
-    "开源社区活跃，边缘AI与多模态模型工具受关注。"
+    "技术优化持续：北大团队显著提升DeepSeek效率，ReCALL框架解决多模态检索范式冲突。",
+    "行业高层动荡：OpenAI在IPO前夕曝出重大人事变动，反映快速发展中的管理挑战。",
+    "AI辅助科研冲击体系：哈佛教授案例引发对学术诚信及论文真实性的系统性担忧。"
   ],
   "must_read": "转自新智元:哈佛物理教授疯了:我让AI写论文,结果两周干完博士一年工作!冲击顶刊",
-  "must_read_reason": "生动案例揭示AI对科研范式的颠覆性影响，同时暗藏学术伦理危机。",
-  "outlook": "开发者需关注专用硬件
-2026-04-06 02:03:33.930 | SUCCESS  | src.analyzer.llm:analyze:133 - AI analysis done: AI加速渗透科研与硬件，具身智能与学术伦理成焦点。...
-2026-04-06 02:03:33.930 | INFO     | src.agent:run:107 - Step 3/4: Generating HTML report & screenshot...
-2026-04-06 02:03:33.942 | SUCCESS  | src.report.generator:render_html:46 - HTML report saved: output/briefing_2026-04-06.html
-2026-04-06 02:03:37.611 | SUCCESS  | src.report.generator:screenshot:65 - Screenshot saved: output/briefing_2026-04-06.png (786 KB)
-2026-04-06 02:03:37.611 | INFO     | src.agent:run:112 - Step 4/4: Sending to Feishu...
-2026-04-06 02:03:39.052 | SUCCESS  | src.notifier.feishu:_get_token:37 - Feishu tenant_access_token acquired
-2026-04-06 02:03:40.966 | SUCCESS  | src.notifier.feishu:_upload_image:55 - Image uploaded to Feishu: img_v3_0210g_47711453-6b8d-4026-bd44-3da7ecba197g
-2026-04-06 02:03:42.040 | SUCCESS  | src.notifier.feishu:send:92 - Feishu image sent
-2026-04-06 02:03:43.554 | SUCCESS  | src.notifier.feishu:send:112 - Feishu report link sent: https://tingtingxiao0706.github.io/morning-briefing/briefing_2026-04-06.html
-2026-04-06 02:03:43.555 | SUCCESS  | src.agent:run:117 - Feishu notification sent!
-2026-04-06 02:03:43.555 | INFO     | src.agent:run:126 - === Morning Briefing Agent DONE in 22.1s ===
-2026-04-06 02:03:43.556 | INFO     | __main__:main:61 - Report saved to: output/briefing_2026-04-06.png
+  "must_read_reason": "
+2026-04-07 01:59:45.146 | SUCCESS  | src.analyzer.llm:analyze:133 - AI analysis done: 技术突破与行业震荡并存，AI学术应用伦理危机凸显。...
+2026-04-07 01:59:45.147 | INFO     | src.agent:run:107 - Step 3/4: Generating HTML report & screenshot...
+2026-04-07 01:59:45.158 | SUCCESS  | src.report.generator:render_html:46 - HTML report saved: output/briefing_2026-04-07.html
+2026-04-07 01:59:50.019 | SUCCESS  | src.report.generator:screenshot:65 - Screenshot saved: output/briefing_2026-04-07.png (834 KB)
+2026-04-07 01:59:50.019 | INFO     | src.agent:run:112 - Step 4/4: Sending to Feishu...
+2026-04-07 01:59:51.004 | SUCCESS  | src.notifier.feishu:_get_token:37 - Feishu tenant_access_token acquired
+2026-04-07 01:59:52.958 | SUCCESS  | src.notifier.feishu:_upload_image:55 - Image uploaded to Feishu: img_v3_0210h_d3cfb200-c262-430c-8b00-2908ebd65efg
+2026-04-07 01:59:54.211 | SUCCESS  | src.notifier.feishu:send:92 - Feishu image sent
+2026-04-07 01:59:55.406 | SUCCESS  | src.notifier.feishu:send:112 - Feishu report link sent: https://tingtingxiao0706.github.io/morning-briefing/briefing_2026-04-07.html
+2026-04-07 01:59:55.406 | SUCCESS  | src.agent:run:117 - Feishu notification sent!
+2026-04-07 01:59:55.406 | INFO     | src.agent:run:126 - === Morning Briefing Agent DONE in 31.5s ===
+2026-04-07 01:59:55.407 | INFO     | __main__:main:61 - Report saved to: output/briefing_2026-04-07.png
